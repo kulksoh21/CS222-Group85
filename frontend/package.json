@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint --dir src",
     "test": "jest --watch",
-    "test:ci": "jest --ci",
-    "lint-staged": "lint-staged"
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "eslint-plugin-jest": "^27.0.4",
