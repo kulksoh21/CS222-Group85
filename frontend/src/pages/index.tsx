@@ -35,6 +35,7 @@ const Home: NextPage = () => {
       name: "",
       email: "",
     });
+    setError("");
   };
   return (
     <div className="Home">
