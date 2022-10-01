@@ -41,8 +41,8 @@ const Home: NextPage = () => {
     <div className="Home">
       {user.email != "" ? (
         <div className="welcome">
-          <h2>
-            Welcome, <span>{user.name}</span>
+          <h2 aria-label="Welcome">
+            Welcome {user.name}
           </h2>
           <button onClick={Logout}>Logout</button>
         </div>
