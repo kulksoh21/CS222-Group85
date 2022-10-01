@@ -1,4 +1,4 @@
-body {
+.body {
     --color-primary: #009579;
     --color-primary-dark: #007f67;
     --color-secondary: #252c6a;
@@ -12,7 +12,6 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    background: url();
     background-size: cover;
 }
 

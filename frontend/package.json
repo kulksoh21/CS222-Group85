@@ -7,12 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --dir src",
+    "jest-preview": "jest-preview",
     "test": "jest --watch",
+    "test-debug": "npm test jest-preview",
+    "test_u": "jest --watch -u",
     "test:ci": "jest --coverage --silent --ci"
   },
   "dependencies": {
     "eslint-plugin-jest": "^27.0.4",
     "eslint-plugin-testing-library": "^5.7.0",
+    "jest-preview": "^0.3.1",
     "next": "12.3.1",
     "prettier": "^2.7.1",
     "react": "18.2.0",
