@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint --dir src",
     "jest-preview": "jest-preview",
-    "test": "jest --watch",
+    "test": "jest",
     "test-debug": "npm test jest-preview",
     "test_u": "jest --watch -u",
     "test:ci": "jest --coverage --silent --ci"
