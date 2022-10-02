@@ -16,21 +16,17 @@ const Home: NextPage = () => {
   const [error, setError] = useState(""); // invalid login handler
 
   const Login = (details: Details) => {
-    console.log(details);
 
     if (details.email === admin.email && details.password == admin.password) {
-      console.log("Success!");
       setUser({
         name: details.name,
         email: details.email,
       });
     } else {
-      console.log("Failed :(");
       setError("Invalid Login");
     }
   };
   const Logout = () => {
-    console.log("Logged Out");
     setUser({
       name: "",
       email: "",
