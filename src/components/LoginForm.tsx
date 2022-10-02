@@ -23,12 +23,11 @@ function LoginForm({ Login, error }: IProps) {
     e.preventDefault();
     Login(details);
   };
-
   return (
   <div className="body">
     <div className="wrapper" role="logo">
     <div className="logo">
-      <Image className="img" src={logo} layout="intrinsic"/>
+      <Image className="img" src={logo} layout="intrinsic" alt="Company Logo"/>
     </div>
   </div>
   <div className="container">
