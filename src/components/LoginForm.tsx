@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Image from 'next/image'
-import logo from "./cs_222_logo.jpeg";
+import Image from "next/image";
+import logo from "cs_222_logo.jpeg";
 //Inspired by https://www.youtube.com/watch?v=7uKVFD_VMT8
 
 interface Details {
