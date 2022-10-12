@@ -14,34 +14,11 @@
   font-size: 18px;
   background-size: cover;
 }
-
-p {
-  font-size: 1rem;
-  text-align: center;
-  color:rgba(0, 0, 0, 0.431);
-}
-
-a {
-  outline: none;
-  text-decoration: none;
-  padding: 2px 1px 0;
-}
-
 .container {
   width: 400px;
   max-width: 400px;
   margin: 2rem;
   padding: 3rem;
-  box-shadow: 0 0 40px rgba(27, 148, 213, 0.431);
-  border-radius: var(--border-radius);
-  background: #ffffff;
-}
-
-.container1 {
-  width: 400px;
-  max-width: 400px;
-  margin: 1rem;
-  padding: 1rem;
   box-shadow: 0 0 40px rgba(27, 148, 213, 0.431);
   border-radius: var(--border-radius);
   background: #ffffff;
