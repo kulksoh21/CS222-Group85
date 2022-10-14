@@ -15,13 +15,16 @@ const Home: NextPage = () => {
   const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState(""); // invalid login handler
 
-  const Login = (details: Details) => {
+  let Login = async (details: Details) => {
 
-    if (details.email === admin.email && details.password == admin.password) {
-      setUser({
-        name: details.name,
-        email: details.email,
-      });
+    let response = await fetch("http://127.0.0.1:5000", {method: "POST", body: JSON.stringify({
+      name: details.name, 
+      email: details.email, 
+      password: details.password
+    }),});
+    let resJson = await response.json();
+    if (resJson.status === 201) {
+      postMessage("Login Successful");
     } else {
       setError("Invalid Login");
     }
