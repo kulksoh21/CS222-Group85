@@ -16,15 +16,20 @@ const Home: NextPage = () => {
   const [error, setError] = useState(""); // invalid login handler
 
   let Login = async (details: Details) => {
-
-    let response = await fetch("http://127.0.0.1:5000", {method: "POST", body: JSON.stringify({
-      name: details.name, 
-      email: details.email, 
-      password: details.password
-    }),});
-    let resJson = await response.json();
+    console.log("Sending Request")
+    const formData  = new FormData();
+    formData.append("name", details.name);
+    formData.append("email", details.email);
+    formData.append("password", details.password);
+    let response = await fetch("http://localhost:5000/login", {method: "POST", body: formData});
+    console.log("got response")
+    console.log(response.status);
+    let resJson = response;
     if (resJson.status === 201) {
-      postMessage("Login Successful");
+      setUser({
+        name: details.name,
+        email: details.email,
+      });
     } else {
       setError("Invalid Login");
     }

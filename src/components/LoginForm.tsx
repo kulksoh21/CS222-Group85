@@ -19,9 +19,9 @@ function LoginForm({ Login, error }: IProps) {
     password: "",
   });
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    Login(details);
+    await Login(details);
   };
   return (
   <div className="body">
@@ -31,7 +31,7 @@ function LoginForm({ Login, error }: IProps) {
     </div>
   </div>
   <div className="container">
-    <form className="form" role="form" id="login" onSubmit={(e) => submitHandler(e)}>
+    <form className="form" role="form" id="login" onSubmit={async (e) => await submitHandler(e)}>
         <h1 className="form__title">Login</h1>
         {error != "" ? <div className="form__message--error">{error}</div> : ""}
         <div className="form__input-group">
