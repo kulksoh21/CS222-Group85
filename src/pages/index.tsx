@@ -15,15 +15,30 @@ const Home: NextPage = () => {
   const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState(""); // invalid login handler
 
-  const Login = (details: Details) => {
-
+  const Login = async (details: Details) => {
     if (details.email === admin.email && details.password == admin.password) {
       setUser({
         name: details.name,
         email: details.email,
       });
     } else {
-      setError("Invalid Login");
+        console.log("Sending Request")
+        const formData  = new FormData();
+        formData.append("name", details.name);
+        formData.append("email", details.email);
+        formData.append("password", details.password);
+        const response = await fetch("http://localhost:5000/login", {method: "POST", body: formData});
+        console.log("got response")
+        console.log(response.status);
+        const resJson = response;
+        if (resJson.status === 201) {
+          setUser({
+            name: details.name,
+            email: details.email,
+          });
+        } else {
+          setError("Invalid Login");
+      }
     }
   };
   const Logout = () => {
@@ -43,7 +58,7 @@ const Home: NextPage = () => {
           <button onClick={Logout}>Logout</button>
         </div>
       ) : (
-        <LoginForm Login={Login} error={error} />
+       <LoginForm Login={Login} error={error} />
       )}
     </div>
   );

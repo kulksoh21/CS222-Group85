@@ -18,5 +18,6 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react", "@typescript-eslint"],
-  rules: { "@typescript-eslint/no-unsafe-assignment": "off" },
+  rules: { "@typescript-eslint/no-unsafe-assignment": "off", 
+            "@typescript-eslint/no-misused-promises": "off"},
 };
