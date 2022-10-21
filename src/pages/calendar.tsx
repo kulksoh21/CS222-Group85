@@ -58,11 +58,15 @@ const CalendarPage: NextPage = () => {
         <input type = "text" placeholder = "Add Title" style={{width: "20%", marginRight: "10px"}} 
         value = {newEvent.title} onChange = {(e) => setNewEvent({...newEvent, title: e.target.value})}
         />
-        <DatePicker placeholderText = "Start Date"
-        selected = {newEvent.start} onChange={(start) => setNewEvent({...newEvent, start: new Date()})} 
+        <DatePicker placeholderText = "Start Date" 
+          selected = {newEvent.start} 
+          onChange={(date) => 
+            setNewEvent({...newEvent, start: (date) ? date : newEvent.start})
+          } 
         />
         <DatePicker placeholderText = "End Date" 
-        selected = {newEvent.end} onChange={(end) => setNewEvent({...newEvent, end: new Date()})}
+          selected = {newEvent.end} 
+          onChange={(date) => setNewEvent({...newEvent, end: (date)  ? date : newEvent.end})}
         />
         <button style ={{marginTop: "10px"}} onClick={AddEvent}>
           Add event
