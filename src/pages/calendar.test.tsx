@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import CalendarPage from './calendar';
-import AddEvent from './calendar'
 
 // Test the Calendar UI component
 describe("Calendar Page Rendering",  () => {
