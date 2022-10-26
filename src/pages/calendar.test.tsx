@@ -18,27 +18,7 @@ describe("Calendar Page Rendering",  () => {
 
     const event2 = screen.getByText("Event2");
     expect(event2).toBeInTheDocument(); 
-  });
-  
-  it ("Can swtich to week view", () => {
-    render(<CalendarPage />);
-    // Finding button to switch view mode
-    const button = screen.getByText("Week");
-    // Simulation button click
-    fireEvent(button, new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }));
-    // Verify the button was clicked
-    expect(button).toHaveClass("rbc-active");
-
-    // Makes sure events still render
-    const event1 = screen.getByText("Event1");
-    expect(event1).toBeInTheDocument();
-
-    const event2 = screen.getByText("Event2");
-    expect(event2).toBeInTheDocument();
-  })
+  }); 
 
   it("Add Event features render placeholders correctly", () => {
     render(<CalendarPage />); 
