@@ -40,7 +40,7 @@ interface user {
 
 const nerd : user = {
   name: "Aryan",
-  email: "amash2@illinois.edu", 
+  email: "random email", 
   password: "whyIsEverythingATree?!?!",
   user_id: "rognreng"
 }
