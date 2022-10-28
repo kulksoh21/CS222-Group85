@@ -10,16 +10,6 @@ describe("Calendar Page Rendering",  () => {
     expect(title).toBeInTheDocument();
   });
 
-  it ("Renders events correctly", () => {
-    render(<CalendarPage />);
-    // Verifying that both events render on page
-    const event1 = screen.getByText("Event1");
-    expect(event1).toBeInTheDocument();
-
-    const event2 = screen.getByText("Event2");
-    expect(event2).toBeInTheDocument(); 
-  }); 
-
   it("Add Event features render placeholders correctly", () => {
     render(<CalendarPage />); 
     const inputTitle = screen.getByPlaceholderText(/Add Title/i);
