@@ -54,18 +54,18 @@ const CalendarPage: NextPage = () => {
 
   useEffect(() => {
     const formData = new FormData();
-    formData.append("user_id", nerd.user_id)
-    fetch("http://127.0.0.1:5000/events/find", {method : "GET"})
+    formData.append("user_id", nerd.user_id);
+    fetch("http://localhost:5000/events/find", {method : "GET"})
     .then(response => response.json())
     .then(res => setAllEvents(res))
-    .catch(error => console.log(error))
+    .catch(Error);
   }, [])
   
   const AddEvent = () => {
     const formData = new FormData();
-    formData.append("user_id", nerd.user_id)
-    fetch("http://127.0.0.1:5000/events/add", {method : "POST", body: formData})
-    .catch(error => console.log(error))
+    formData.append("user_id", nerd.user_id);
+    fetch("http://localhost:5000/events/add", {method : "POST", body: formData})
+    .catch(Error);
     setAllEvents([...allEvents, newEvent]); 
   }
   
