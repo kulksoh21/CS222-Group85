@@ -5,9 +5,10 @@ import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css"
+import "react-datepicker/dist/react-datepicker.css";
+import fetch from "cross-fetch"; 
 
 const locales: object = {
   "en-US": require("date-fns/locale/en-US"),
@@ -22,6 +23,7 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
+
 // Creating dummy data
 interface event {
   title: string;
@@ -29,24 +31,41 @@ interface event {
   start: Date;
   end: Date;
 }
-const events: event[] = [
-  {
-    title: "Event1",
-    start: new Date("2022-10-20T20:50:21.817Z"),
-    end: new Date("2022-10-20T23:50:21.817Z"),
-  },
-  {
-    title: "Event2",
-    start: new Date("2022-10-21T12:50:21.817Z"),
-    end: new Date("2022-10-21T13:50:21.817Z"),
-  },
-];
+interface user {
+  name: string
+  email: string
+  password: string
+  user_id: string
+}
+
+const nerd : user = {
+  name: "Aryan",
+  email: "random email", 
+  password: "whyIsEverythingATree?!?!",
+  user_id: "rognreng"
+}
+
+const userEvents : event[] = []; //variable user events
+
 const CalendarPage: NextPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [newEvent, setNewEvent] = useState({title: "", start: new Date(), end: new Date()}); 
-  const [allEvents, setAllEvents] = useState(events); // will use setAllEvents in future
+  const [allEvents, setAllEvents] = useState(userEvents); // will use setAllEvents in future
+
+  useEffect(() => {
+    const formData = new FormData();
+    formData.append("user_id", nerd.user_id);
+    fetch("http://localhost:5000/events/find", {method : "GET"})
+    .then(response => response.json())
+    .then(res => setAllEvents(res))
+    .catch(Error);
+  }, [])
   
   const AddEvent = () => {
+    const formData = new FormData();
+    formData.append("user_id", nerd.user_id);
+    fetch("http://localhost:5000/events/add", {method : "POST", body: formData})
+    .catch(Error);
     setAllEvents([...allEvents, newEvent]); 
   }
   
