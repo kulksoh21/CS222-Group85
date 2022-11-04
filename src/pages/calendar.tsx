@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import fetch from "cross-fetch"; 
+import { useRouter } from "next/router";
 
 const locales: object = {
   "en-US": require("date-fns/locale/en-US"),
@@ -31,19 +32,19 @@ interface event {
   start: Date;
   end: Date;
 }
-interface user {
-  name: string
-  email: string
-  password: string
-  user_id: string
-}
+// interface user {
+//   name: string
+//   email: string
+//   password: string
+//   user_id: string
+// }
 
-const nerd : user = {
-  name: "Aryan",
-  email: "random email", 
-  password: "whyIsEverythingATree?!?!",
-  user_id: "rognreng"
-}
+// const nerd : user = {
+//   name: "Aryan",
+//   email: "random email", 
+//   password: "whyIsEverythingATree?!?!",
+//   user_id: "rognreng"
+// }
 
 const userEvents : event[] = []; //variable user events
 
@@ -51,19 +52,21 @@ const CalendarPage: NextPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [newEvent, setNewEvent] = useState({title: "", start: new Date(), end: new Date()}); 
   const [allEvents, setAllEvents] = useState(userEvents); // will use setAllEvents in future
-
+  const router = useRouter()
+  const username = (router.query.username) ? router.query.username: "";
+  const formInput = username as unknown as string;
   useEffect(() => {
     const formData = new FormData();
-    formData.append("user_id", nerd.user_id);
+    formData.append("user_id", formInput);
     fetch("http://localhost:5000/events/find", {method : "GET"})
     .then(response => response.json())
     .then(res => setAllEvents(res))
     .catch(Error);
-  }, [])
+  })
   
   const AddEvent = () => {
     const formData = new FormData();
-    formData.append("user_id", nerd.user_id);
+    formData.append("user_id", formInput);
     fetch("http://localhost:5000/events/add", {method : "POST", body: formData})
     .catch(Error);
     setAllEvents([...allEvents, newEvent]); 
@@ -73,6 +76,7 @@ const CalendarPage: NextPage = () => {
     <div>
       <h1>Calendar</h1>
       <h2> Add Event </h2>
+      <p>Current User is: {formInput}</p>
       <div>
         <input type = "text" placeholder = "Add Title" style={{width: "20%", marginRight: "10px"}} 
         value = {newEvent.title} onChange = {(e) => setNewEvent({...newEvent, title: e.target.value})}
