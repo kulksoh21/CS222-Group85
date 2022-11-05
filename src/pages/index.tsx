@@ -1,7 +1,10 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import LoginForm from "../components/LoginForm";
+
+import { useRouter } from 'next/router'
 const Home: NextPage = () => {
+  const router = useRouter()
   interface Details {
     name: string;
     email: string;
@@ -36,6 +39,7 @@ const Home: NextPage = () => {
             name: details.name,
             email: details.email,
           });
+          await router.push({pathname: 'calendar/', query: { username: details.name }});
         } else {
           setError("Invalid Login");
       }
@@ -63,5 +67,4 @@ const Home: NextPage = () => {
     </div>
   );
 };
-
 export default Home;
