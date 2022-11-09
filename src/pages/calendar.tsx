@@ -82,7 +82,7 @@ const CalendarPage: NextPage = () => {
     setAllEvents([...allEvents, newEvent]);
   };
 
-  //if you dont want to remove selected event, will be prompted to edit
+  //if you dont want to remove selected event, will be prompted to edit event
   const RemoveOrEdit = (event) =>{
     const remove = window.confirm("Do you want to remove this event?")
     if (remove) {
