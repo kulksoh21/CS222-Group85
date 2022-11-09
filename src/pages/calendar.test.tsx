@@ -35,7 +35,38 @@ describe("Calendar Page Rendering",  () => {
     //check if pressing add event creates event on calendar
     const button = screen.getByRole("button", {name: /Add Event/i});
     fireEvent.click(button); 
-    // const event = screen.getByText("do work");
-    // expect(event).toBeInTheDocument();
+    //const event = screen.getByText("do work");
+    //expect(event).toBeInTheDocument();
+  })
+
+  it("Remove Event Works", () => {
+    render(<CalendarPage />);
+    const inputTitle = screen.getByPlaceholderText(/Add Title/i);
+    const inputStart = screen.getByPlaceholderText(/Start Date/i);
+    const inputEnd = screen.getByPlaceholderText(/End Date/i);
+    fireEvent.change(inputTitle, {target: {value: "do work"}});
+    fireEvent.change(inputStart, {target: {value: "10/21/22"}});
+    fireEvent.change(inputEnd, {target: {value: "10/22/22"}});
+    const button = screen.getByRole("button", {name: /Add event/i});
+    fireEvent.click(button); 
+    window.confirm = jest.fn(() => true)
+    expect(screen.queryByText("do work")).not.toBeInTheDocument()
+  })
+
+  it("Edit Event Works", () => {
+    render(<CalendarPage />);
+    const inputTitle = screen.getByPlaceholderText(/Add Title/i);
+    const inputStart = screen.getByPlaceholderText(/Start Date/i);
+    const inputEnd = screen.getByPlaceholderText(/End Date/i);
+    fireEvent.change(inputTitle, {target: {value: "do work"}});
+    fireEvent.change(inputStart, {target: {value: "10/21/22"}});
+    fireEvent.change(inputEnd, {target: {value: "10/22/22"}});
+    const button = screen.getByRole("button", {name: /Add event/i});
+    fireEvent.click(button); 
+    fireEvent.change(inputTitle, {target: {value: "Woof Woof"}});
+    fireEvent.change(inputStart, {target: {value: "11/08/22"}});
+    fireEvent.change(inputEnd, {target: {value: "11/08/22"}});
+    window.confirm = jest.fn(() => true)
+    expect(screen.queryByText("do work")).not.toBeInTheDocument()
   })
 });

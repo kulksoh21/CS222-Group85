@@ -82,10 +82,49 @@ const CalendarPage: NextPage = () => {
     setAllEvents([...allEvents, newEvent]);
   };
 
+  //if you dont want to remove selected event, will be prompted to edit
+  const RemoveOrEdit = (event) =>{
+    const remove = window.confirm("Do you want to remove this event?")
+    if (remove) {
+      //routing
+      const formData = new FormData();
+      formData.append("user_id", formInput)
+      formData.append("date", event.start)
+      fetch("http://localhost:5000/events/remove", {
+        method: "POST",
+        body: formData,
+      }).catch(Error)
+      //display
+      const current_events = [...allEvents]
+      current_events.splice(current_events.indexOf(event), 1)
+      setAllEvents(current_events)
+    } else {
+      const edit = window.confirm("Do you want to edit this event?")
+      //routing
+      if (edit) {
+        const formData = new FormData();
+        formData.append("user_id", formInput)
+        formData.append("date", event.start)
+        formData.append("detail", event.title)
+        fetch("http://localhost:5000/events/edit", {
+          method: "POST",
+          body: formData,
+        }).catch(Error)
+        //display
+        const current_events = [...allEvents]
+        current_events.splice(current_events.indexOf(event), 1)
+        setAllEvents([...current_events, newEvent])
+      }
+    }
+  };
+
   return (
     <div>
       <h1>Calendar</h1>
-      <h2> Add Event </h2>
+      <h2> Add/Edit Event </h2>
+      <p> To Edit: Update fields and click the event you want edited.
+                   Will be prompted to remove; cancel that to edit.
+      </p>
       <p>Current User is: {formInput}</p>
       <div>
         <input
@@ -119,6 +158,7 @@ const CalendarPage: NextPage = () => {
         startAccessor="start"
         endAccessor="end"
         style={{ height: "1000px", margin: "50px" }}
+        onSelectEvent={RemoveOrEdit}
       />
     </div>
   );
