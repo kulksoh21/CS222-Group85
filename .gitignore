@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -36,10 +37,15 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 =======
+=======
+>>>>>>> f2c718a7999be6a42ec84f1c295f6374f4459915
 *.pyc
 .sqlite
 *.DS_Store
 .pytest_cache/
 __pycache__/
 backend/instance/database.sqlite
+<<<<<<< HEAD
 >>>>>>> 199d012d0bcf99ad63ef6545852016edf7ce1d8d
+=======
+>>>>>>> f2c718a7999be6a42ec84f1c295f6374f4459915
