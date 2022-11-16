@@ -140,7 +140,7 @@ const CalendarPage: NextPage = () => {
           }
         />
         <button style={{ marginTop: "10px" }} onClick={AddEvent}>
-          Add event
+          Add or Edit Event
         </button>
       </div>
       <Calendar
