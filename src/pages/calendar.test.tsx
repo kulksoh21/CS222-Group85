@@ -9,7 +9,9 @@ describe("Calendar Page Rendering",  () => {
     const title = screen.getByText("Calendar");
     expect(title).toBeInTheDocument();
   });
+}); 
 
+describe("Event functionality working", () => {
   it("Add Event features render placeholders correctly", () => {
     render(<CalendarPage />); 
     const inputTitle = screen.getByPlaceholderText(/Add Title/i);
@@ -36,7 +38,7 @@ describe("Calendar Page Rendering",  () => {
     const button = screen.getByRole("button", {name: /Add Event/i});
     fireEvent.click(button); 
   })
-
+  
   it("Remove Event Works", () => {
     render(<CalendarPage />);
     const inputTitle = screen.getByPlaceholderText(/Add Title/i);
