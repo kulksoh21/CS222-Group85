@@ -23,27 +23,12 @@ const localizer = dateFnsLocalizer({
   getDay,
   locales,
 });
-
-// Creating dummy data
 interface event {
   title: string;
   allDay?: boolean;
   start: Date;
   end: Date;
 }
-// interface user {
-//   name: string
-//   email: string
-//   password: string
-//   user_id: string
-// }
-
-// const nerd : user = {
-//   name: "Aryan",
-//   email: "random email",
-//   password: "whyIsEverythingATree?!?!",
-//   user_id: "rognreng"
-// }
 
 const userEvents: event[] = []; //variable user events
 
@@ -54,7 +39,7 @@ const CalendarPage: NextPage = () => {
     start: new Date(),
     end: new Date(),
   });
-  const [allEvents, setAllEvents] = useState(userEvents); // will use setAllEvents in future
+  const [allEvents, setAllEvents] = useState(userEvents);
   const router = useRouter();
   const username = router
     ? router.query.username
@@ -63,6 +48,7 @@ const CalendarPage: NextPage = () => {
     : "";
   const formInput = username as unknown as string;
 
+  //routing for find events
   useEffect(() => {
     const formData = new FormData();
     formData.append("user_id", formInput);
@@ -72,6 +58,7 @@ const CalendarPage: NextPage = () => {
       .catch(Error);
   });
 
+  //routing and adding events to calendar
   const AddEvent = () => {
     const formData = new FormData();
     formData.append("user_id", formInput);
@@ -82,42 +69,46 @@ const CalendarPage: NextPage = () => {
     setAllEvents([...allEvents, newEvent]);
   };
 
-  //if you dont want to remove selected event, will be prompted to edit event
-  const RemoveOrEdit = (event) =>{
+  //routing and removing events from calendar
+  const RemoveEvent = (event) => {
+    const formData = new FormData();
+    formData.append("user_id", formInput)
+    formData.append("date", event.start)
+    fetch("http://localhost:5000/events/remove", {
+      method: "POST",
+      body: formData,
+    }).catch(Error)
+    const current_events = [...allEvents]
+    current_events.splice(current_events.indexOf(event), 1)
+    setAllEvents(current_events)
+  }
+
+  //routing and editing evetns from calendar
+  const EditEvent = (event) => {
+    const formData = new FormData();
+    formData.append("user_id", formInput)
+    formData.append("date", event.start)
+    formData.append("detail", event.title)
+    fetch("http://localhost:5000/events/edit", {
+      method: "POST",
+      body: formData,
+    }).catch(Error)
+    const current_events = [...allEvents]
+    current_events.splice(current_events.indexOf(event), 1)
+    setAllEvents([...current_events, newEvent])
+  }
+
+  //allows user to choose to remove/edit event when event is clicked
+  const handleEventSelection = (event) =>{
     const remove = window.confirm("Do you want to remove this event?")
-    if (remove) {
-      //routing
-      const formData = new FormData();
-      formData.append("user_id", formInput)
-      formData.append("date", event.start)
-      fetch("http://localhost:5000/events/remove", {
-        method: "POST",
-        body: formData,
-      }).catch(Error)
-      //display
-      const current_events = [...allEvents]
-      current_events.splice(current_events.indexOf(event), 1)
-      setAllEvents(current_events)
-    } else {
+    if (remove) RemoveEvent(event)
+    else {
       const edit = window.confirm("Do you want to edit this event?")
-      //routing
-      if (edit) {
-        const formData = new FormData();
-        formData.append("user_id", formInput)
-        formData.append("date", event.start)
-        formData.append("detail", event.title)
-        fetch("http://localhost:5000/events/edit", {
-          method: "POST",
-          body: formData,
-        }).catch(Error)
-        //display
-        const current_events = [...allEvents]
-        current_events.splice(current_events.indexOf(event), 1)
-        setAllEvents([...current_events, newEvent])
-      }
+      if (edit) EditEvent(event)
     }
   };
 
+  //displays calendar page and add/edit event fields
   return (
     <div>
       <h1>Calendar</h1>
@@ -149,7 +140,7 @@ const CalendarPage: NextPage = () => {
           }
         />
         <button style={{ marginTop: "10px" }} onClick={AddEvent}>
-          Add event
+          Add or Edit Event
         </button>
       </div>
       <Calendar
@@ -158,7 +149,7 @@ const CalendarPage: NextPage = () => {
         startAccessor="start"
         endAccessor="end"
         style={{ height: "1000px", margin: "50px" }}
-        onSelectEvent={RemoveOrEdit}
+        onSelectEvent={handleEventSelection}
       />
     </div>
   );
