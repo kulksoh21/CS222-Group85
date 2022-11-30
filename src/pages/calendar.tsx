@@ -120,7 +120,7 @@ const CalendarPage: NextPage = () => {
         <div className="navbar-brand">
           <a className="navbar-item">
             <Image src={logo} width="58" height="28" alt="Company Logo" />
-            CalendlarAppify
+            CalendarAppify
           </a>
 
           <a
