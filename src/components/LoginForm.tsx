@@ -27,17 +27,17 @@ function LoginForm({ Login, error }: IProps) {
   <div className="body">
     <div className="wrapper" role="logo">
     <div className="logo">
-      <Image className="img" src={logo} layout="intrinsic" alt="Company Logo"/>
+      <Image className="img" src={logo} layout="intrinsic" alt="Company Logo" width="600" height="600"/>
       <h1 className="title has-text-centered">CalendarAppify</h1>
     </div>
   </div>
-  <div className="container">
+  <div className="container has-background-link is-rounded">
     <form className="form" role="form" id="login" onSubmit={(e) => submitHandler(e)}>
-        <h1 className="form__title">Login</h1>
+        <h1 className="form__title is-size-1 has-text-primary-light">Login Below!</h1>
         {error != "" ? <div className="form__message--error">{error}</div> : ""}
         <div className="form__input-group">
-          <label htmlFor="name">Name:</label>
           <input
+            placeholder="Name"
             type="text"
             name="name"
             aria-label="name"
@@ -49,8 +49,8 @@ function LoginForm({ Login, error }: IProps) {
         </div>
 
         <div className="form__input-group">
-          <label htmlFor="email">Email:</label>
           <input
+            placeholder="Email"
             type="text"
             name="email"
             id="email"
@@ -62,8 +62,8 @@ function LoginForm({ Login, error }: IProps) {
         </div>
 
         <div className="form__input-group">
-          <label htmlFor="password">Password:</label>
           <input
+            placeholder="Password"
             type="password"
             name="password"
             id="password"
@@ -76,7 +76,7 @@ function LoginForm({ Login, error }: IProps) {
           />
         </div>
 
-        <input aria-label="button" className="button is-link" type="submit" value="LOGIN"/>
+        <input aria-label="button" className="button is-danger" type="submit" value="LOGIN"/>
     </form>
     </div>
     </div>
