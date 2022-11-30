@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import logo from "./cs_222_logo.jpeg";
+import logo from "./logo.png"
 //Inspired by https://www.youtube.com/watch?v=7uKVFD_VMT8
 
 interface Details {
@@ -75,7 +75,7 @@ function LoginForm({ Login, error }: IProps) {
           />
         </div>
 
-        <input aria-label="button" className="form__button" type="submit" value="LOGIN" />
+        <input aria-label="button" className="button is-link" type="submit" value="LOGIN"/>
     </form>
     </div>
     </div>
