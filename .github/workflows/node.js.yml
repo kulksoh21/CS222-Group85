@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: ["main", "CalendarQueryProtection"]
+    branches: ["main", "CalendarQueryProtection", "CalendarStyling"]
   pull_request:
-    branches: ["main", "CalendarQueryProtection"]
+    branches: ["main", "CalendarQueryProtection", "CalendarStyling"]
 
 jobs:
   build:
