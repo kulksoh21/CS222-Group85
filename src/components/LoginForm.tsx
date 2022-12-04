@@ -27,8 +27,9 @@ function LoginForm({ Login, error }: IProps) {
   <div className="body">
     <div className="wrapper" role="logo">
     <div className="logo">
-      <Image className="img" src={logo} layout="intrinsic" alt="Company Logo" width="600" height="600"/>
-      <h1 className="title has-text-centered">CalendarAppify</h1>
+      <Image className="img" src={logo} layout="intrinsic" alt="Company Logo"
+      width = "1000"
+      height = "1000"/>
     </div>
   </div>
   <div className="container has-background-link is-rounded">
