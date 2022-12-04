@@ -27,7 +27,7 @@
 .container,
 .form__input,
 .form__button {
-  font: 500 1rem 'Quicksand', sans-serif;
+  font: 900 1rem 'Quicksand', sans-serif;
 }
 
 .form--hidden {
@@ -97,7 +97,7 @@
   padding: 1rem 2rem;
   font-weight: bold;
   font-size: 1.1rem;
-  color: #ffffff;
+  color: #0f0e0e;
   border: none;
   border-radius: var(--border-radius);
   outline: none;
@@ -125,4 +125,8 @@
 
 .form__link:hover {
   text-decoration: underline;
+}
+
+.h1 {
+  color: red;
 }

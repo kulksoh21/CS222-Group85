@@ -30,7 +30,8 @@ const Home: NextPage = () => {
         formData.append("name", details.name);
         formData.append("email", details.email);
         formData.append("password", details.password);
-        const response = await fetch("http://localhost:5000/login", {method: "POST", body: formData});
+        const response = await fetch("http://localhost:5000/login", 
+                                    {method: "POST", body: formData});
         console.log("got response")
         console.log(response.status);
         const resJson = response;
@@ -39,7 +40,8 @@ const Home: NextPage = () => {
             name: details.name,
             email: details.email,
           });
-          await router.push({pathname: 'calendar/', query: { username: details.name }});
+          await router.push({pathname: 'calendar/', 
+                            query: { username: details.name }});
         } else {
           setError("Invalid Login");
       }
