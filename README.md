@@ -1,34 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CS222 Group-85 Project: CalendarAppify
 
-## Getting Started
+This is an calendar app that allows used to signup and login to a personalized account where they can interact with a calendar interace to add, edit, and remove events that they'd like to keep track of using the app.
 
-First, run the development server:
+## Technical Architecture
+
+Here is a diagram of the technical archecture setup for this project:
+
+![Project Diagram](./Arch.png)
+
+### Frontend
+
+The frontend for this app is built using NextJs and typescript-based `.tsx` components.
+
+We use the `ReactBigCalendar` library for the base of our calendar UI components. This is then layered with our own styling and custom interactions and backend link-ups
+
+Testing for the app was done using the `jest` testing framework for react
+
+### Backend
+
+The backend for this app is built in Python using the Flask framework to handle frontend requests and database interactions for user data.
+
+There are api request routes spread out into different Python files based on their functionality, and `SQLAlchemy` is used to communicated to the local `SQLlite` database used to store user information.
+
+There is also a calendar class created in Python to encapuslate each individual user's events and a variety of methods to edit the calendar as need via a frontend interaction that triggers a api request.
+
+## Getting Setup on Your Own Computer
+
+The project is split between its frontend and backend, located on the `main` branch and `backendFinal` branch in GitHub respectively.
+
+To run the frontend go to the `main` branch and run the following (make sure `npm` is installed)
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To run the frontend go to the `backendFinal` branch and run the following (make sure python is installed)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+cd backend
+pip install -r requirements.txt
+flask run
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Contributors
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+This was a project for CS222 with a group consistig of Aryan Mashruwla, Dhiraj Kuttichirayil, Kishan Challagulla, Soham Kulkarni.
 
-## Learn More
+Below are the distribution of work for project aspects:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+| Aspect                   | Location | Members              |
+| ------------------------ | -------- | -------------------- |
+| Login/SignUp             | Backend  | Aryan, Dhiraj, Soham |
+| Login/SignUp             | Frontend | Kishan               |
+| Calendar Design          | Frontend | Dhiraj, Kishan       |
+| Calendar Class Functions | Backend  | Dhiraj, Soham        |
+| Calendar Interactions    | Frontend | Aryan                |

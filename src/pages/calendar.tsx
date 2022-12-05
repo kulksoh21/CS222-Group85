@@ -192,11 +192,11 @@ const CalendarPage: NextPage = () => {
                         <DatePicker
                           className="input"
                           placeholderText="Start Date"
-                          selected={newEvent.end}
+                          selected={newEvent.start}
                           onChange={(date) =>
                             setNewEvent({
                               ...newEvent,
-                              end: date ? date : newEvent.end,
+                              start: date ? date : newEvent.start,
                             })
                           }
                         />
