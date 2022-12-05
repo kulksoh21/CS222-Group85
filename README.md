@@ -2,6 +2,8 @@
 
 This is an calendar app that allows used to signup and login to a personalized account where they can interact with a calendar interace to add, edit, and remove events that they'd like to keep track of using the app.
 
+You can see our final presentation on the project here: [Final Presentation Video](https://www.youtube.com/watch?v=Sl-hIdHFOE4)
+
 ## Technical Architecture
 
 Here is a diagram of the technical archecture setup for this project:
